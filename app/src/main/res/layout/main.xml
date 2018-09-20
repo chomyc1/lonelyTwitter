@@ -31,6 +31,18 @@
         android:layout_height="wrap_content"
         android:scrollbars="horizontal" />
 
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:text="Happy" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="167dp"
+        android:layout_height="wrap_content"
+        android:text="Sad" />
+
     <Button
         android:id="@+id/clear"
         android:layout_width="match_parent"
