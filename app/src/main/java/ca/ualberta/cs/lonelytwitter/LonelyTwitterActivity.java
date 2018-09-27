@@ -40,7 +40,18 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+		Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+
+		// When clear button is clicked:
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				clearFile();
+				adapter.notifyDataSetChanged();
+				onStart();
+			}
+		});
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
@@ -49,14 +60,14 @@ public class LonelyTwitterActivity extends Activity {
 				ImportantTweet newTweet = new ImportantTweet();
 				try {
 					newTweet.setMessage(text);
-					tweets.add(newTweet);
+				//	tweets.add(newTweet);
 				}catch(TweetTooLongException e) {
 
 				}
 
+				tweets.add(newTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile();
-				//saveInFile(text, new Date(System.currentTimeMillis()));
 			}
 		});
 	}
@@ -70,7 +81,7 @@ public class LonelyTwitterActivity extends Activity {
 	}
 
 	private void loadFromFile() {
-		ArrayList<String> tweets = new ArrayList<String>();
+		//ArrayList<String> tweets = new ArrayList<String>();
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
 			InputStreamReader isr = new InputStreamReader(fis);
@@ -106,12 +117,15 @@ public class LonelyTwitterActivity extends Activity {
 
 			FileOutputStream fos = openFileOutput(FILENAME, 0);
 			OutputStreamWriter osw = new OutputStreamWriter(fos);
-			BufferedWriter writer = new BufferedWriter(osw);
+			//BufferedWriter writer = new BufferedWriter(osw);
 			Gson gson = new Gson();
 			gson.toJson(tweets,osw);
-			osw.flush();
+			//osw.flush();
+			//writer.flush();
+			//writer.close();
+			osw.close();
 			fos.close();
-			writer.flush();
+
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -125,21 +139,29 @@ public class LonelyTwitterActivity extends Activity {
 		//}
 	}
 
-/*	private void clearFile() {
-		try {
-			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_PRIVATE);
-			fos.write(new String("").getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
+private void clearFile() {
+		//try {
+			tweets = new ArrayList<Tweet>();
+
+			//FileOutputStream fos = openFileOutput(FILENAME, 0);
+			//OutputStreamWriter osw = new OutputStreamWriter(fos);
+			//BufferedWriter writer = new BufferedWriter(osw);
+			//Gson gson = new Gson();
+			//gson.toJson(tweets,osw);
+			//osw.flush();
+			//writer.flush();
+			//writer.close();
+			//fos.close();
+			//osw.close();
+		//} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+		//	e.printStackTrace();
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 		return;
-	}*/
+	}
 
 
 }
