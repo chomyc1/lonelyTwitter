@@ -1,16 +1,33 @@
+/*
+ * NormalTweet.java
+ *
+ * Version Information
+ *
+ * October 3, 2018
+ *
+ * Copyright notice
+ *
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
-public class NormalTweet extends Tweet {
-    NormalTweet() {
-        super();
-    }
+import java.util.Date;
 
-    NormalTweet(String message) {
+/**
+ * Created by shida3 on 1/19/17.
+ */
+
+public class NormalTweet extends Tweet {
+    public NormalTweet(String message) {
         super(message);
     }
 
+    public NormalTweet(Date date, String message) {
+        super(date, message);
+    }
+
     @Override
-    public Boolean isImportant() {
+    public Boolean isImportant(){
         return false;
     }
 }

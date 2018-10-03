@@ -1,8 +1,21 @@
+/*
+ * Tweetable.java
+ *
+ * Version Information
+ *
+ * October 3, 2018
+ *
+ * Copyright notice
+ *
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
-import java.util.Date;
+/**
+ * Created by shida3 on 1/19/17.
+ */
 
 public interface Tweetable {
     public String getMessage();
-    public Date getDate();
+    public void setMessage(String string) throws TweetTooLongException;
 }
