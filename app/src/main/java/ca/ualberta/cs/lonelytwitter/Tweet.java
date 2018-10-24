@@ -19,6 +19,10 @@ public abstract class Tweet {
         this.date = new Date(System.currentTimeMillis());
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public Date getDate() {
         return date;
     }

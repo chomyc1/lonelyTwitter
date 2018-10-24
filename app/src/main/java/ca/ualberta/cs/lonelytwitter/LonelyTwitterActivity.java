@@ -88,7 +88,7 @@ public class LonelyTwitterActivity extends Activity {
 		}
 
 	}
-	
+
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
